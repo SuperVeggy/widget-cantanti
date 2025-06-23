@@ -1,169 +1,141 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vota la cantante italiana più sexy del 2025</title>
-  <style>
-    :root {
-      --card-width: 230px;
-      --card-height: 320px;
-      --bg: #f5f9fb;
-      --primary: #09f;
-      --secondary: #83ae30;
-      --text: #222;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--primary);
-      text-align: center;
-    }
-
-    .grid {
-      display: grid;
-      gap: 1.5rem;
-      justify-items: center;
-      max-width: 1200px;
-      width: 100%;
-      grid-template-columns: repeat(4, minmax(var(--card-width), 1fr));
-    }
-
-    /* Tablet: 3 card per riga */
-    @media (max-width: 768px) and (min-width: 481px) {
-      .grid {
-        grid-template-columns: repeat(3, minmax(var(--card-width), 1fr));
-      }
-      :root {
-        --card-width: 200px;
-        --card-height: 280px;
-      }
-    }
-
-    /* Smartphone: 2 card per riga */
-    @media (max-width: 480px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      :root {
-        --card-width: 140px;
-        --card-height: 220px;
-      }
-    }
-
-    .card {
-      width: var(--card-width);
-      height: var(--card-height);
-      perspective: 1000px;
-      cursor: pointer;
-    }
-
-    .card-inner {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      will-change: transform;
-    }
-
-    .card.flipped .card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 1rem;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden; /* Safari */
-      -webkit-transform-style: preserve-3d; /* Safari */
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      background: #fff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-front img {
-      width: 100%;
-      height: 75%;
-      object-fit: cover;
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
-    }
-
-    .card-front h3 {
-      margin: 0;
-      padding: 1rem;
-      font-size: 1.1rem;
-      text-align: center;
-      color: var(--secondary);
-    }
-
-    .card-back {
-      transform: rotateY(180deg);
-      background: none;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      padding: 1rem;
-    }
-
-    .card-back .back-blur-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.4);
-      z-index: 0;
-      border-radius: 1rem;
-    }
-
-    .card-back a {
-      position: relative;
-      z-index: 1;
-      background: rgba(131, 174, 48, 0.9);
-      color: white;
-      text-decoration: none;
-      border-radius: 1.5rem;
-      padding: 0.8rem 1.4rem;
-      font-size: 1.1rem;
-      text-align: center;
-      line-height: 1.4;
-      display: inline-block;
-      transition: background 0.3s, transform 0.2s;
-      user-select: none;
-    }
-
-    .card-back a:hover {
-      background-color: #6a8e27;
-      transform: scale(1.05);
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Widget vota cantante sexy 2025</title>
+<style>
+  :root {
+    --card-height: 250px;
+    --card-width: calc(50% - 1rem);
+    --bg: #f5f9fb;
+    --primary: #09f;
+    --secondary: #83ae30;
+    --text: #222;
+    --gap: 1rem;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .widget {
+    width: 100%;
+    max-width: 700px;
+    height: calc(var(--card-height) * 6 + var(--gap) * 5); /* 6 righe, 5 gap */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    padding: 1rem;
+    overflow: hidden; /* nessuno scroll verticale */
+  }
+  h1 {
+    text-align: center;
+    margin: 0 0 1rem 0;
+    color: var(--primary);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: var(--card-width) var(--card-width);
+    gap: var(--gap);
+  }
+  .card {
+    height: var(--card-height);
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    will-change: transform;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  .card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background: #fff;
+  }
+  .card-front img {
+    width: 100%;
+    height: 75%;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+  .card-front h3 {
+    margin: 0;
+    padding: 1rem;
+    font-size: 1.1rem;
+    text-align: center;
+    color: var(--secondary);
+  }
+  .card-back {
+    transform: rotateY(180deg);
+    background: none;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+  }
+  .card-back .back-blur-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.4);
+    z-index: 0;
+    border-radius: 1rem;
+  }
+  .card-back a {
+    position: relative;
+    z-index: 1;
+    background: rgba(131, 174, 48, 0.9);
+    color: white;
+    text-decoration: none;
+    border-radius: 1.5rem;
+    padding: 0.8rem 1.4rem;
+    font-size: 1.1rem;
+    text-align: center;
+    line-height: 1.4;
+    display: inline-block;
+    transition: background 0.3s, transform 0.2s;
+    user-select: none;
+  }
+  .card-back a:hover {
+    background-color: #6a8e27;
+    transform: scale(1.05);
+  }
+</style>
 </head>
 <body>
-  <h1>Vota la cantante italiana più sexy del 2025</h1>
-  <div class="grid" id="cardGrid"></div>
+  <div class="widget" role="main" aria-label="Sondaggio vota cantante italiana più sexy 2025">
+    <h1>Vota la cantante italiana più sexy del 2025</h1>
+    <div class="grid" id="cardGrid"></div>
+  </div>
 
   <script>
 const cantanti = [
@@ -180,7 +152,6 @@ const cantanti = [
 { name: "Malika Ayane", img: "img/malika-ayane.jpg", link: "#malika" },
 { name: "Rose Villain", img: "img/rose-villain.jpg", link: "#noemi" },
 ];
-
     const grid = document.getElementById("cardGrid");
 
     cantanti.forEach(cantante => {
@@ -211,4 +182,5 @@ const cantanti = [
   </script>
 </body>
 </html>
+
 
